@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-5">
+    <form [formGroup]="this.CustomerService.form" (ngSubmit)="onSubmit()">
+      <input type="hidden" formControlName="$key" />
+      <div class="formgroup">
+        <label>Full Name</label>
+        <input
+          formControlName="fullName"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && formcontrols.fullName.errors
+          }"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted && formcontrols.fullName.errors"
+        >
+          This field is Required
+        </div>
+      </div>
+      <div class="formgroup">
+        <label>Email</label>
+        <input
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && formcontrols.email.errors }"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted && formcontrols.email.errors"
+        >
+          Invalid Email Address
+        </div>
+      </div>
+      <div class="formgroup">
+        <label>Mobile</label>
+        <input
+          formControlName="mobile"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && formcontrols.mobile.errors }"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted && formcontrols.mobile.errors"
+        >
+          <label *ngIf="formcontrols.mobile.errors.required">
+            This field is Required</label
+          >
+          <label *ngIf="formcontrols.mobile.errors.minlength"
+            >Atleast 8 Numbers.</label
+          >
+        </div>
+      </div>
+      <div class="formgroup">
+        <label>Location</label>
+        <input
+          formControlName="location"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && formcontrols.location.errors
+          }"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted && formcontrols.location.errors"
+        >
+          This Field is required
+        </div>
+      </div>
+      <div class="formgroup">
+        <input type="submit" class="btn btn-primary" value="submit" />
+      </div>
+    </form>
+    <div class="alert alert-info" *ngIf="showSuccessMessage">
+      submitted Successfully
+    </div>
+  </div>
+  <div class="col-md-7">
+    <app-customer-list></app-customer-list>
+  </div>
+</div>
